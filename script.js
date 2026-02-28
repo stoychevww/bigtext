@@ -29,7 +29,9 @@ function clear() {
 // ── Fullscreen toggle ──────────────────────────────────────
 
 function enterFullscreen() {
-  document.documentElement.requestFullscreen().catch(() => {});
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  }
 }
 
 function toggleFullscreen() {
@@ -58,8 +60,10 @@ function _autoFS(e) {
   if (e.target && e.target.closest('#controls')) return;
   _autoFSDone = true;
   enterFullscreen();
-  // On iOS, requestFullscreen is a no-op; focus input directly so the keyboard shows
   input.focus();
+  // iOS: fullscreenchange never fires in a browser tab, so the overlay would
+  // stay forever and block all taps. Remove it ourselves after the gesture.
+  setTimeout(() => document.getElementById('overlay')?.remove(), 100);
 }
 document.addEventListener('click',   _autoFS, { capture: true });
 document.addEventListener('keydown', _autoFS, { capture: true });
