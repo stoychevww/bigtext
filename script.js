@@ -58,19 +58,31 @@ function _autoFS(e) {
   if (e.target && e.target.closest('#controls')) return;
   _autoFSDone = true;
   enterFullscreen();
+  // On iOS, requestFullscreen is a no-op; focus input directly so the keyboard shows
+  input.focus();
 }
 document.addEventListener('click',   _autoFS, { capture: true });
 document.addEventListener('keydown', _autoFS, { capture: true });
 
-// ── Reveal controls on mouse movement in fullscreen ────────
+// ── Reveal controls on mouse movement / touch in fullscreen ─
 
 let _peekTimer = null;
-document.addEventListener('mousemove', () => {
+function _showPeek() {
   if (!document.fullscreenElement) return;
   controls.classList.add('peek');
   clearTimeout(_peekTimer);
   _peekTimer = setTimeout(() => controls.classList.remove('peek'), 2000);
-});
+}
+document.addEventListener('mousemove',  _showPeek);
+document.addEventListener('touchstart', _showPeek, { passive: true });
+
+// ── Shrink layout when virtual keyboard appears (iOS/Android) ─
+
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', () => {
+    document.body.style.height = window.visualViewport.height + 'px';
+  });
+}
 
 // ── Canvas word-wrap (mirrors CSS word-break: break-word) ──
 
