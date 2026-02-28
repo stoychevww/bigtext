@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="bigtext — instantly display large text on screen. Perfect for video calls, noisy environments, or silent communication."
+    />
+    <title>bigtext</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="display" class="empty" title="Click to toggle fullscreen">
+      <span>Start typing...</span>
+    </div>
+
+    <footer>
+      <p class="hint">
+        Click the message to go fullscreen &middot; Esc to exit
+      </p>
+      <div id="input-bar">
+        <textarea
+          id="input"
+          placeholder="Type your message here..."
+          autofocus
+          rows="1"
+        ></textarea>
+        <button id="clear-btn" title="Clear (Ctrl+L)">&#x2715;</button>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  background: #0f0f0f;
+  color: #ffffff;
+  font-family: system-ui, sans-serif;
+  overflow: hidden;
+}
+
+/* ── Display area ─────────────────────────────────────────── */
+
+#display {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+}
+
+#display span {
+  font-size: clamp(3rem, 10vw, 12rem);
+  font-weight: 800;
+  line-height: 1.1;
+  word-break: break-word;
+  transition: font-size 0.1s ease;
+}
+
+#display.empty span {
+  font-size: 4rem;
+  color: #2e2e2e;
+}
+
+/* ── Footer / input bar ───────────────────────────────────── */
+
+footer {
+  border-top: 1px solid #1f1f1f;
+  background: #141414;
+}
+
+.hint {
+  font-size: 0.72rem;
+  color: #3a3a3a;
+  text-align: center;
+  padding: 0.5rem 1rem 0.25rem;
+  letter-spacing: 0.02em;
+}
+
+#input-bar {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem 1rem;
+}
+
+#input {
+  flex: 1;
+  background: #1e1e1e;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  color: #fff;
+  outline: none;
+  resize: none;
+  min-height: 48px;
+  max-height: 160px;
+  font-family: inherit;
+  line-height: 1.45;
+  transition: border-color 0.15s;
+}
+
+#input::placeholder {
+  color: #3a3a3a;
+}
+
+#input:focus {
+  border-color: #404040;
+}
+
+#clear-btn {
+  background: #1e1e1e;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  color: #555;
+  font-size: 1.1rem;
+  padding: 0 1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+#clear-btn:hover {
+  background: #272727;
+  border-color: #404040;
+  color: #ccc;
+}
+
+/* ── Fullscreen adjustments ───────────────────────────────── */
+
+:fullscreen footer,
+:-webkit-full-screen footer {
+  display: none;
+}
+
+:fullscreen #display,
+:-webkit-full-screen #display {
+  cursor: default;
+}
