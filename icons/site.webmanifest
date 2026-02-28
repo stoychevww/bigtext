@@ -1,0 +1,13 @@
+{
+  "name": "bigtext",
+  "short_name": "bigtext",
+  "description": "Instantly display large text on screen. Perfect for video calls, noisy environments, or silent communication.",
+  "icons": [
+    { "src": "icons/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/android-chrome-512x512.png",  "sizes": "512x512",  "type": "image/png" }
+  ],
+  "theme_color": "#0f0f0f",
+  "background_color": "#0f0f0f",
+  "display": "standalone",
+  "start_url": "/"
+}
